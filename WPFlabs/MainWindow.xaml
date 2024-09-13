@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFlabs"
         mc:Ignorable="d"
-        Title="Casino" Height="600" Width="800"
+        Title="CasinoXXX" Height="600" Width="800"
         MinHeight="550" MinWidth="700">
     <Grid RenderTransformOrigin="0.5,0.5">
         <Grid.RowDefinitions>
@@ -21,5 +21,11 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="DarkRed">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock FontSize="18" FontWeight="Bold">Казино</TextBlock>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
