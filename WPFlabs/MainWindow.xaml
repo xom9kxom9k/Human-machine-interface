@@ -27,5 +27,63 @@
                 <TextBlock FontSize="18" FontWeight="Bold">Казино</TextBlock>
             </StackPanel>
         </Border>
+        <Border Grid.Row="1" Grid.Column="0" Background="LightBlue" Margin="5,5,5,5">
+            <StackPanel>
+                <Image x:Name="tape"  Width="140"/>
+                <TextBox BorderBrush="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Рулетка" FontWeight="Bold" FontSize="14" Background="LightBlue" Margin="5,5,5,0"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" Background="LightGray" Margin="5,5,5,5">
+            <StackPanel>
+                <Image x:Name="blackjack"  Width="140"/>
+                <TextBox BorderBrush="LightGray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Блек-джек" FontWeight="Bold" FontSize="14" Background="LightGray" Margin="5,5,5,0"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="2" Background="LightYellow" Margin="5,5,5,5">
+            <StackPanel>
+                <Image x:Name="slots"  Width="140" />
+                <TextBox BorderBrush="LightYellow" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Слоты" FontWeight="Bold" FontSize="14" Background="LightYellow" Margin="5,5,5,5"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="0" Background="LightGray" Margin="5,5,5,5">
+            <StackPanel>
+                <Image x:Name="tennis"  Width="140" Height="185"/>
+                <TextBox BorderBrush="LightGray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Теннис" FontSize="11" Background="LightGray" Margin="5,5,5,5"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="1"  Background="LightGray" Margin="5,5,5,5">
+            <StackPanel>
+                <Image x:Name="biatl"  Width="140" Height="185"/>
+                <TextBox BorderBrush="LightGray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Биатлон" FontSize="11" Background="LightGray" Margin="5,5,5,5"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="2" Background="LightGray" Margin="5,5,5,5">
+            <StackPanel>
+                <Image x:Name="basket"  Width="140" Height="185"/>
+                <TextBox BorderBrush="LightGray" HorizontalAlignment="Center" VerticalAlignment="Bottom" Text="Баскетбол" FontSize="11" Background="LightGray" Margin="5,5,5,5"/>
+            </StackPanel>
+        </Border>
+
+        <Button x:Name="btnButton1" Grid.Column="0" Grid.Row="2" Content="Играть в рулетку" FontWeight="Bold" Margin="5,7,5,7" Background="DarkRed" Click="starttape"></Button>
+        <Button x:Name="btnButton2" Grid.Column="1" Grid.Row="2" Content="Играть в блек-джек" FontWeight="Bold" Margin="5,7,5,7"  Background="DarkRed" Click="startblack"></Button>
+        <Button x:Name="btnButton3" Grid.Column="2" Grid.Row="2" Content="Играть в слоты" FontWeight="Bold" Margin="5,7,5,7"  Background="DarkRed" Click="startslot"></Button>
+        <StackPanel Grid.Column="3" Grid.Row="2">
+            <Slider Name="vol"  Maximum="5" ValueChanged="vol_ValueChanged" MinHeight="23" MinWidth="100" Value="0" LargeChange="0.1" SmallChange="0.01" Margin="0,0,0,0"/>
+            <StackPanel Orientation="Horizontal" >
+                <Button x:Name="btnButton4" Padding="10,4,10,4" Content="Воспроизвести видео"  Margin="5,0,5,0"   Click="But_Play" ></Button>
+                <Button x:Name="btnButton41" Padding="10,4,10,4" Content="Остановить видео"  Margin="5,0,5,0"  Click="But_Stop" ></Button>
+            </StackPanel>
+        </StackPanel>
+
+        <Button x:Name="btnButton5" Grid.Column="0" Grid.Row="4" Content="Играть в карты" FontWeight="Bold" Margin="5,7,5,7" Background="DarkRed" Click="tennisrez"></Button>
+        <Button x:Name="btnButton6" Grid.Column="1" Grid.Row="4" Content="Играть в ракетку" FontWeight="Bold" Margin="5,7,5,7" Background="DarkRed"  Click="biatlrez"></Button>
+        <Button x:Name="btnButton7" Grid.Column="2" Grid.Row="4" Content="Играть в свинтуса" FontWeight="Bold" Margin="5,7,5,7" Background="DarkRed" Click="basketrez"></Button>
+        <StackPanel Grid.Column="3" Grid.Row="4">
+            <Slider Name="vol2"  Maximum="5" ValueChanged="vol_ValueChanged2" MinHeight="23" MinWidth="100" Value="0" LargeChange="0.1" SmallChange="0.01" Margin="0,0,0,0"/>
+            <StackPanel Orientation="Horizontal" >
+                <Button x:Name="btnButton8" Padding="10,4,10,4" Content="Воспроизвести видео"  Margin="5,0,5,0"   Click="But_Play_Basket" ></Button>
+                <Button x:Name="btnButton81" Padding="10,4,10,4" Content="Остановить видео"  Margin="5,0,5,0"   Click="But_Stop_Basket" ></Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
