@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFlabs"
         mc:Ignorable="d"
-        Title="CasinoXXX" Height="600" Width="800"
+        Title="CasinoXXX" Height="600" Width="870"
         MinHeight="550" MinWidth="700">
     <Window.Resources>
         <SolidColorBrush x:Key="exampleBrush" Opacity="0.3" Color="Red"  />
@@ -16,7 +16,23 @@
             <Setter Property="Control.Foreground" Value="Black" />
         </Style>
     </Window.Resources>
-    
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard x:Name="coloranimation"  TargetProperty="Width" TargetName="btnButton1">
+                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                            From="Cyan" To="DarkCyan" 
+                                            Duration="0:0:1" 
+                                            AutoReverse="True" 
+                                            RepeatBehavior="Forever"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Grid RenderTransformOrigin="0.5,0.5">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
@@ -74,26 +90,36 @@
             </StackPanel>
         </Border>
 
-        <Button x:Name="btnButton1" Grid.Column="0" Grid.Row="2" Content="Играть в рулетку" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" ></Button>
-        <Button x:Name="btnButton2" Grid.Column="1" Grid.Row="2" Content="Играть в блек-джек" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" ></Button>
-        <Button x:Name="btnButton3" Grid.Column="2" Grid.Row="2" Content="Играть в слоты" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" ></Button>
+        <Viewbox Grid.Row="1" Grid.Column="3">
+            <MediaElement x:Name="casino" Source="src/casino.mp4" Margin="5,5,5,5" LoadedBehavior="Manual"/>
+        </Viewbox>
+
+        <Viewbox Grid.Row="3" Grid.Column="3">
+            <MediaElement x:Name="tamaev" Source="src/tamaev.mp4" Margin="5,5,5,5" LoadedBehavior="Manual"/>
+        </Viewbox>
+
+        <Button x:Name="btnButton1" Grid.Column="0" Grid.Row="2" Content="Играть в рулетку" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" Click="playbutton1" ></Button>
+        <Button x:Name="btnButton2" Grid.Column="1" Grid.Row="2" Content="Играть в блек-джек" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" Click="playbutton2" ></Button>
+        <Button x:Name="btnButton3" Grid.Column="2" Grid.Row="2" Content="Играть в слоты" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" Click="playbutton3" ></Button>
         <StackPanel Grid.Column="3" Grid.Row="2">
-            <Slider Name="vol"  Maximum="5"  MinHeight="23" MinWidth="100" Value="0" LargeChange="0.1" SmallChange="0.01" Margin="0,0,0,0"/>
+            <Slider Name="vol"  Maximum="5" ValueChanged="vol_ValueChanged" MinHeight="23" MinWidth="100" Value="0" LargeChange="0.1" SmallChange="0.01" Margin="0,0,0,0"/>
             <StackPanel Orientation="Horizontal" >
-                <Button x:Name="btnButton4" Padding="10,4,10,4" Content="Воспроизвести видео"  Margin="5,0,5,0"    ></Button>
-                <Button x:Name="btnButton41" Padding="10,4,10,4" Content="Остановить видео"  Margin="5,0,5,0"   ></Button>
+                <Button x:Name="btnButton4" Padding="10,4,10,4" Content="Воспроизвести видео"  Margin="5,0,5,0" Style="{StaticResource ButtStyle}" Click="But_Play_Casino" ></Button>
+                <Button x:Name="btnButton41" Padding="10,4,10,4" Content="Остановить видео"  Margin="5,0,5,0" Style="{StaticResource ButtStyle}" Click="But_Stop_Casino" ></Button>
             </StackPanel>
         </StackPanel>
 
-        <Button x:Name="btnButton5" Grid.Column="0" Grid.Row="4" Content="Играть в покер" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}"  ></Button>
-        <Button x:Name="btnButton6" Grid.Column="1" Grid.Row="4" Content="Играть в ракетку" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}"  ></Button>
-        <Button x:Name="btnButton7" Grid.Column="2" Grid.Row="4" Content="Играть в сундук" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}"  ></Button>
+        <Button x:Name="btnButton5" Grid.Column="0" Grid.Row="4" Content="Играть в покер" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" Click="playbutton4" ></Button>
+        <Button x:Name="btnButton6" Grid.Column="1" Grid.Row="4" Content="Играть в ракетку" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" Click="playbutton5" ></Button>
+        <Button x:Name="btnButton7" Grid.Column="2" Grid.Row="4" Content="Играть в сундук" FontWeight="Bold" Margin="5,7,5,7" Style="{StaticResource ButtStyle}" Click="playbutton6" ></Button>
         <StackPanel Grid.Column="3" Grid.Row="4">
-            <Slider Name="vol2"  Maximum="5"  MinHeight="23" MinWidth="100" Value="0" LargeChange="0.1" SmallChange="0.01" Margin="0,0,0,0"/>
+            <Slider Name="vol2"  Maximum="5" ValueChanged="vol_ValueChanged2" MinHeight="23" MinWidth="100" Value="0" LargeChange="0.1" SmallChange="0.01" Margin="0,0,0,0"/>
             <StackPanel Orientation="Horizontal" >
-                <Button x:Name="btnButton8" Padding="10,4,10,4" Content="Воспроизвести видео"  Margin="5,0,5,0"    ></Button>
-                <Button x:Name="btnButton81" Padding="10,4,10,4" Content="Остановить видео"  Margin="5,0,5,0"    ></Button>
+                <Button x:Name="btnButton8" Padding="10,4,10,4" Content="Воспроизвести видео"  Margin="5,0,5,0" Style="{StaticResource ButtStyle}" Click="But_Play_Tamaev"></Button>
+                <Button x:Name="btnButton81" Padding="10,4,10,4" Content="Остановить видео"  Margin="5,0,5,0" Style="{StaticResource ButtStyle}" Click="But_Stop_Tamaev"></Button>
             </StackPanel>
         </StackPanel>
+
+        
     </Grid>
 </Window>

@@ -95,9 +95,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="tape.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="src\tape.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +105,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="src\poker.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\casino.mp4" />
+    <Content Include="src\tamaev.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
