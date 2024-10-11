@@ -107,8 +107,12 @@
     <Resource Include="src\poker.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\casino.mp4" />
-    <Content Include="src\tamaev.mp4" />
+    <Content Include="src\casino.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="src\tamaev.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
