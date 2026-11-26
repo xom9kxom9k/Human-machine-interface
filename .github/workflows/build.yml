@@ -1,0 +1,52 @@
+name: SonarQube
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and analyze
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: windows-2022
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '8.0.x'
+
+      - uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57 # v3.0.0
+
+      - name: Install SonarScanner for .NET
+        shell: pwsh
+        run: dotnet tool install --global dotnet-sonarscanner --version 12.1.0
+
+      - name: Authenticate to SonarQube Cloud
+        uses: SonarSource/sonarqube-auth-action@v1.2
+        id: auth
+
+      - name: Start SonarQube analysis
+        shell: pwsh
+        env:
+          SONAR_PROJECT_KEY: ${{ steps.auth.outputs.project-key }}
+          SONAR_ORGANIZATION: ${{ steps.auth.outputs.organization }}
+        run: dotnet sonarscanner begin /k:"$env:SONAR_PROJECT_KEY" /o:"$env:SONAR_ORGANIZATION" /d:sonar.token="$env:SONAR_TOKEN"
+
+      - name: Build WPFlabs
+        shell: pwsh
+        run: msbuild WPFlabs/WPFlabs.sln /t:Rebuild /nodeReuse:false
+
+      - name: Upload SonarQube analysis
+        shell: pwsh
+        run: dotnet sonarscanner end /d:sonar.token="$env:SONAR_TOKEN"
